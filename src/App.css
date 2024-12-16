@@ -1,0 +1,8 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.app-bar {
+  background-color: rgb(175, 22, 129) !important;
+}

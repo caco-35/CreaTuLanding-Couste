@@ -1,0 +1,24 @@
+/*CONTENENDOR DONDE SE MOSTRARAN LOS PRODUCTOS*/
+
+.container {
+    background-color: red;
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 16px; 
+    justify-content: center; 
+    padding: 25px;
+}
+
+
+/*ESTILO DE LA CARD PARA LOS PRODUCTOS*/
+
+.card {
+    width: 250px;
+    height: 450px;
+}
+
+.text-description {
+    height: 80px;
+    font-size: 13px !important;
+    overflow-y: auto;
+  }
