@@ -1,15 +1,16 @@
-import './App.css'
-import ItemListContainer from './components/ItemListContainer'
-import NavBar from './components/NavBar'
+import { useState } from 'react';
+import NavBar from './components/NavBar';
+import ItemListContainer from './components/ItemListContainer';
 
-function App() {
+const App = () => {
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   return (
-    <>
-      <NavBar />
-      <ItemListContainer />
-    </>
-  )
-}
+    <div>
+      <NavBar setSelectedCategory={setSelectedCategory} />
+      <ItemListContainer selectedCategory={selectedCategory} />
+    </div>
+  );
+};
 
-export default App
+export default App;
