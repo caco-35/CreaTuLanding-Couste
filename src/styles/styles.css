@@ -1,7 +1,7 @@
 /*CONTENENDOR DONDE SE MOSTRARAN LOS PRODUCTOS*/
 
 .container {
-    background-color: red;
+    background-color: rgb(230, 226, 226);
     display: flex;
     flex-wrap: wrap; 
     gap: 16px; 
