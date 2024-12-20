@@ -22,6 +22,7 @@ ItemList.propTypes = {
             descripcion: PropTypes.string,
             precio: PropTypes.number.isRequired,
             stock: PropTypes.number.isRequired,
+            imagenes: PropTypes.arrayOf(PropTypes.string).isRequired,
         })
     ).isRequired,
 };
