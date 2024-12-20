@@ -6,13 +6,16 @@ import { CircularProgress, Box } from '@mui/material';
 
 const ItemListContainer = ({ selectedCategory }) => {
   const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true); // Estado para controlar el loading
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+
+    setLoading(true);
+
     const fetchProductos = new Promise((resolve) => {
       setTimeout(() => {
         resolve(products);
-      }, 1500); // Simulación de un retraso de 1.5 segundos
+      }, 1500);
     });
 
     fetchProductos.then((data) => {
@@ -21,26 +24,18 @@ const ItemListContainer = ({ selectedCategory }) => {
       } else {
         setItems(data);
       }
-      setLoading(false); // Detener el efecto de carga
+      setLoading(false);
     });
   }, [selectedCategory]);
 
   return (
-    <div>
+    <div className='items-container'>
       {loading ? (
-        // Spinner centrado en pantalla
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '100vh', // Ocupa toda la altura de la pantalla
-          }}
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}
         >
-          <CircularProgress size={60} /> {/* Tamaño del spinner */}
+          <CircularProgress size={60} />
         </Box>
       ) : (
-        // Mostrar los productos una vez cargados
         <ItemList items={items} />
       )}
     </div>
