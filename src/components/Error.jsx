@@ -1,6 +1,11 @@
+import  MinErr from '../assets/img/MiniomError.jpg'
+
 const Error = () => {
   return (
-    <div>Error, no se ha encontrado la pagina</div>
+      <div className="error-container">
+        <img src={MinErr} alt="" className='img-error' />
+        <p>Error 404, Page Not Found</p>
+      </div>
   )
 }
 

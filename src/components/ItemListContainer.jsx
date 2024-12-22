@@ -1,4 +1,5 @@
 import '../styles/styles.css';
+import PropTypes from 'prop-types';
 import ItemList from './ItemList';
 import { useEffect, useState } from 'react';
 import { products } from '../data/products';
@@ -40,6 +41,10 @@ const ItemListContainer = ({ selectedCategory }) => {
       )}
     </div>
   );
+};
+
+ItemListContainer.propTypes = {
+ selectedCategory: PropTypes.func.isRequired,
 };
 
 export default ItemListContainer;

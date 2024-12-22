@@ -1,4 +1,5 @@
 import { Box, AppBar, Toolbar, Typography, Button, Menu, MenuItem } from '@mui/material';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { ArrowDropDown } from '@mui/icons-material'; // Icono para desplegar el menú
 import CartWidget from './CartWidget';
@@ -14,26 +15,28 @@ const menuItemStyle = {
 };
 
 const NavBar = ({ setSelectedCategory }) => {
-  const [anchorEl, setAnchorEl] = useState(null); // Estado para el menú desplegable
-  const [isHovering, setIsHovering] = useState(false); // Estado para controlar el hover en la flecha
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [isHovering, setIsHovering] = useState(false);
 
   const handleMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget); // Abre el menú
+    setAnchorEl(event.currentTarget); 
   };
 
   const handleMenuClose = () => {
-    setAnchorEl(null); // Cierra el menú
+    setAnchorEl(null);
   };
 
   const handleProductsClick = () => {
-    setSelectedCategory(''); // Muestra todos los productos al hacer clic en "Productos"
-    handleMenuClose(); // Cierra el menú en caso de estar abierto
+    setSelectedCategory('');
+    handleMenuClose();
   };
 
   const handleCategoryClick = (category) => {
-    setSelectedCategory(category); // Filtrar productos según la categoría seleccionada
-    handleMenuClose(); // Cerrar el menú después de seleccionar
+    setSelectedCategory(category);
+    handleMenuClose();
   };
+
+  const categories = ['Todas las Categorías', 'Ropa', 'Pantalones', 'Chaquetas', 'Calzado', 'Accesorios'];
 
   return (
     <>
@@ -58,12 +61,11 @@ const NavBar = ({ setSelectedCategory }) => {
                   <ArrowDropDown />
                 </Button>
                 <Menu id="categories-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose} MenuListProps={{ sx: { backgroundColor: 'rgba(0, 0, 0, 0.8)', color: 'white' } }} >
-                  <MenuItem onClick={() => handleCategoryClick('')}>Todas las Categorías</MenuItem>
-                  <MenuItem onClick={() => handleCategoryClick('Ropa')}>Ropa</MenuItem>
-                  <MenuItem onClick={() => handleCategoryClick('Pantalones')}>Pantalones</MenuItem>
-                  <MenuItem onClick={() => handleCategoryClick('Chaquetas')}>Chaquetas</MenuItem>
-                  <MenuItem onClick={() => handleCategoryClick('Calzado')}>Calzado</MenuItem>
-                  <MenuItem onClick={() => handleCategoryClick('Accesorios')}>Accesorios</MenuItem>
+                  {categories.map((category, index) => (
+                    <MenuItem key={index} onClick={() => handleCategoryClick(category === 'Todas las Categorías' ? '' : category)}>
+                      {category}
+                    </MenuItem>
+                  ))}
                 </Menu>
               </MenuItem>
               <MenuItem sx={menuItemStyle}>
@@ -80,6 +82,10 @@ const NavBar = ({ setSelectedCategory }) => {
       <Outlet />
     </>
   );
+};
+
+NavBar.propTypes = {
+  setSelectedCategory: PropTypes.func.isRequired,
 };
 
 export default NavBar;
