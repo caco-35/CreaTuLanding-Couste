@@ -7,6 +7,7 @@ import Error from './components/Error';
 import Footer from './components/Footer';
 import './App.css'
 import Home from './components/Home';
+import Nosotros from './components/Nosotros';
 
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
             <Route index element={<Home />} />
             <Route path='/productos' element={<ItemListContainer selectedCategory={selectedCategory} />} />
             <Route path="/productos/:id" element={<ItemDetailContainer />} />
+            <Route path='/nosotros' element={<Nosotros />} />
             <Route path='*' element={<Error />} />
           </Route>
         </Routes>

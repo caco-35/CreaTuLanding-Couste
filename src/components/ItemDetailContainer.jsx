@@ -41,13 +41,13 @@ const ItemDetailContainer = () => {
           </Box>
 				<CardMedia sx={{ height:"500px" , width:"500px" , backgroundSize:"cover" , backgroundPosition:"center" , }} image={selectedImage} title="Imagen seleccionada"/>
 			</Box>
-			<Box sx={{ marginLeft:"2em" , flex: 1 }}>
+			<Box sx={{ marginLeft:"2em" , flex: 1, backgroundColor:"#f5f5f5" , padding:"1em" , borderRadius:"10px" , }}>
 			<h2>Detalle del producto</h2>
 			<h2>{product.nombre}</h2>
 			<p>{product.descripcion}</p>
 			<h3>Precio: ${product.precio}</h3>
 			<p>Stock: {product.stock}</p>
-			<Box sx={{ display:"flex" , alignItems:"center" , gap:"1em" , marginTop:"1em" , }}>
+			<Box sx={{ display:"flex" , alignItems:"center" , gap:"1em" , marginTop:"1em" }}>
 				<TextField id="outlined-number" value={value} onChange={handleChange} label="Cantidad" type="number" slotProps={{inputLabel: {shrink: true,},}} InputProps={{ inputProps: { min: 1 , max: 99 } }} sx={{height: '20px','& .MuiInputBase-root' : {height:'30px' , fontSize:'0.8rem' ,},}}/>
 				<Button variant="contained" color="primary" onClick={handleAddToCart}> Agregar al carrito
 			</Button>

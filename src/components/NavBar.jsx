@@ -18,6 +18,8 @@ const NavBar = ({ setSelectedCategory }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [isHovering, setIsHovering] = useState(false);
 
+  const categories = ['Todas las Categorías', 'Ropa', 'Pantalones', 'Chaquetas', 'Calzado', 'Accesorios'];
+
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget); 
   };
@@ -36,7 +38,7 @@ const NavBar = ({ setSelectedCategory }) => {
     handleMenuClose();
   };
 
-  const categories = ['Todas las Categorías', 'Ropa', 'Pantalones', 'Chaquetas', 'Calzado', 'Accesorios'];
+
 
   return (
     <>
@@ -69,8 +71,8 @@ const NavBar = ({ setSelectedCategory }) => {
                 </Menu>
               </MenuItem>
               <MenuItem sx={menuItemStyle}>
-                <Link>
-                  <Button sx={{ color: 'white' }}>Ofertas</Button>
+                <Link to={'nosotros'}>
+                  <Button sx={{ color: 'white' }}>Nosotros</Button>
                 </Link>
               </MenuItem>
             </Box>
