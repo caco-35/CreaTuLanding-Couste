@@ -1,8 +1,20 @@
 import { Card, CardContent, CardMedia, Typography, Divider } from "@mui/material";
+import { useEffect } from 'react';
+import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const ItemCard = ({ id, nombre, precio, descripcion, stock, imagenes }) => {
+
+  const db = getFirestore();
+  
+    useEffect(() => {
+      const itemCollection = doc(db, 'items');
+  
+      getDoc(itemCollection).then(snapshot => snapshot.docs.map(docu =>  { 
+        console.log(docu.data());
+      }));
+    }, [db]);
  
   return (
     <>
