@@ -1,31 +1,53 @@
-import ItemCard from "./ItemCard"
-import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { Typography } from "@mui/material";
+import { db } from "../data/firebase"; // Importa db desde firebase.js
+import ItemCard from "./ItemCard";
 
+const ItemList = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-const ItemList = ({ items }) => {
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const productsCollection = collection(db, "products"); // Conexión a la colección "products"
+        const snapshot = await getDocs(productsCollection);
+        const items = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        console.log(items);
+        setProducts(items);
+      } catch (error) {
+            console.error("Error al obtener los productos de Firebase:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  if (loading) {
+    return <Typography variant="h6">Cargando productos...</Typography>;
+  }
 
   return (
     <div className="container">
-        {
-            items.map((item) => (
-                <ItemCard key={item.id} {...item}  />
-            ))}
+      {products.map((product) => (
+        <ItemCard
+          key={product.id}
+          id={product.id}
+          nombre={product.name}
+          precio={product.price}
+          descripcion={product.description}
+          stock={product.stock}
+          imagenes={[product.imgs]}
+        />
+      ))}
     </div>
-  )
-}
-
-ItemList.propTypes = {
-    items: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-            nombre: PropTypes.string.isRequired,
-            descripcion: PropTypes.string,
-            precio: PropTypes.number.isRequired,
-            stock: PropTypes.number.isRequired,
-            imagenes: PropTypes.arrayOf(PropTypes.string).isRequired,
-        })
-    ).isRequired,
+  );
 };
 
-
-export default ItemList
+export default ItemList;

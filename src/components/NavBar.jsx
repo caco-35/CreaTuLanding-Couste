@@ -18,7 +18,7 @@ const NavBar = ({ setSelectedCategory }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [isHovering, setIsHovering] = useState(false);
 
-  const categories = ['Todas las Categorías', 'Ropa', 'Pantalones', 'Chaquetas', 'Calzado', 'Accesorios'];
+  const categories = ['Todas las Categorías', 'Ropa', 'Pantalones', 'Chaquetas', 'Calzado', 'Abrigos'];
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget); 
