@@ -1,9 +1,18 @@
+import { Box, Typography, Container } from "@mui/material";
+
 const Home = () => {
   return (
-    <div>
-      <h1>Bienvenidos</h1>
-    </div>
-  )
-}
+     <Box sx={{ height: "90vh", display: "flex", justifyContent: "center", alignItems: "center", textAlign: "center", }}>
+      <Container>
+        <Typography variant="h2" gutterBottom>
+          ¡Bienvenidos!
+        </Typography>
+        <Typography variant="h5" paragraph>
+          Descubre los mejores productos en nuestra tienda online.
+        </Typography>
+      </Container>
+    </Box>
+  );
+};
 
-export default Home
+export default Home;

@@ -68,7 +68,13 @@ const ItemDetailContainer = () => {
   };
 
   const handleAddToCart = () => {
-    addToCart(product, value);
+    if (value > product.stock) {
+      alert("No hay suficiente stock");
+      return;
+    }else{
+      addToCart(product, value);
+      product.stock -= value;
+    }
   };
 
   console.log(product);
