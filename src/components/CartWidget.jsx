@@ -21,14 +21,11 @@ const CartWidget = () => {
 
   return (
     <>
-      {/* Botón del carrito */}
       <IconButton size="large" color="inherit" onClick={() => setCartOpen(true)}>
         <Badge badgeContent={getTotalItems()} color="error">
           <ShoppingCartIcon fontSize="large" />
         </Badge>
       </IconButton>
-
-      {/* Modal del carrito */}
       <Dialog open={cartOpen} onClose={() => setCartOpen(false)} fullWidth>
         <DialogTitle>Carrito de Compras</DialogTitle>
         <DialogContent>
@@ -39,7 +36,7 @@ const CartWidget = () => {
               <List>
                 {Object.values(cartItems).map((item) => (
                   <ListItem key={item.id}>
-                    <ListItemText primary={item.name} secondary={`Cantidad: ${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`} />
+                    <ListItemText primary={item.name} secondary={<>Cantidad: {item.quantity}{" "} <span style={{ color: "red" }}>-</span> ${(item.price * item.quantity).toFixed(2)}</>}/>
                     <List sx={{ display: 'flex', gap: 1 }}> 
                       <Button onClick={() => updateQuantity(item.id, item.quantity > 1 ? item.quantity - 1 : 1)} disabled={item.quantity <= 1}>
                         -
@@ -57,20 +54,13 @@ const CartWidget = () => {
               <Button onClick={clearCart} color="secondary" variant="contained" sx={{ mt: 2 }}>
                 Vaciar Carrito
               </Button>
-              <Button 
-                onClick={handleCheckout}
-                color="primary" 
-                variant="contained" 
-                sx={{ mt: 2, ml: 2 }}
-              >
+              <Button onClick={handleCheckout} color="primary" variant="contained" sx={{ mt: 2, ml: 2 }} >
                 Finalizar Compra
               </Button>
             </>
           )}
         </DialogContent>
       </Dialog>
-
-      {/* Modal de confirmación de compra */}
       <Dialog open={checkoutOpen} onClose={handleCloseCheckout}>
         <DialogTitle>¡Gracias por tu compra!</DialogTitle>
         <DialogContent>

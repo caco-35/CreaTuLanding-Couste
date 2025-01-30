@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { Typography } from "@mui/material";
-import { db } from "../data/firebase"; // Importa db desde firebase.js
+import { db } from "../data/firebase";
 import ItemCard from "./ItemCard";
 
 const ItemList = () => {
@@ -11,7 +11,7 @@ const ItemList = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const productsCollection = collection(db, "products"); // Conexión a la colección "products"
+        const productsCollection = collection(db, "products");
         const snapshot = await getDocs(productsCollection);
         const items = snapshot.docs.map((doc) => ({
           id: doc.id,
@@ -36,15 +36,7 @@ const ItemList = () => {
   return (
     <div className="container">
       {products.map((product) => (
-        <ItemCard
-          key={product.id}
-          id={product.id}
-          nombre={product.name}
-          precio={product.price}
-          descripcion={product.description}
-          stock={product.stock}
-          imagenes={[product.imgs]}
-        />
+        <ItemCard key={product.id} id={product.id} nombre={product.name} precio={product.price} descripcion={product.description} stock={product.stock} imagenes={[product.imgs]} />
       ))}
     </div>
   );

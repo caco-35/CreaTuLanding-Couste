@@ -1,7 +1,7 @@
 import { Box, AppBar, Toolbar, Typography, Button, Menu, MenuItem } from '@mui/material';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { ArrowDropDown } from '@mui/icons-material'; // Icono para desplegar el menú
+import { ArrowDropDown } from '@mui/icons-material';
 import CartWidget from './CartWidget';
 import { Outlet, Link } from 'react-router-dom';
 

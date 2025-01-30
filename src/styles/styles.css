@@ -48,6 +48,7 @@
 
   .footer {
     display: flex;
+    flex-direction: column;
     height: 25vh;
     background-color: #1976D2;
     color: white;

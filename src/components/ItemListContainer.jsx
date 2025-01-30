@@ -4,7 +4,7 @@ import ItemList from "./ItemList";
 import { useEffect, useState } from "react";
 import { CircularProgress, Box } from "@mui/material";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { db } from "../data/firebase"; // Asegúrate de que este sea el archivo correcto donde inicializas Firebase
+import { db } from "../data/firebase";
 
 const ItemListContainer = ({ selectedCategory }) => {
   const [items, setItems] = useState([]);
@@ -15,10 +15,7 @@ const ItemListContainer = ({ selectedCategory }) => {
       setLoading(true);
 
       try {
-        // Referencia a la colección "products"
         const productsCollection = collection(db, "products");
-
-        // Si hay una categoría seleccionada, aplica un filtro con `where`
         const productsQuery = selectedCategory
         ? query(productsCollection, where("category", "==", selectedCategory))
         : productsCollection;
@@ -26,16 +23,15 @@ const ItemListContainer = ({ selectedCategory }) => {
           console.log(productsQuery);
           console.log(productsCollection);
 
-        // Obtiene los documentos desde Firebase
         const snapshot = await getDocs(productsQuery);
         const fetchedItems = snapshot.docs.map((doc) => ({
-          id: doc.id, // Incluye el ID del documento
-          ...doc.data(), // Datos del documento
+          id: doc.id,
+          ...doc.data(), 
         }));
 
         setItems(fetchedItems);
       } catch (error) {
-        console.error("Error al obtener productos de Firebase:", error);
+          console.error("Error al obtener productos de Firebase:", error);
       } finally {
         setLoading(false);
       }
@@ -47,14 +43,7 @@ const ItemListContainer = ({ selectedCategory }) => {
   return (
     <div className="items-container">
       {loading ? (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100vh",
-          }}
-        >
+        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", }} >
           <CircularProgress size={60} />
         </Box>
       ) : (
@@ -65,7 +54,7 @@ const ItemListContainer = ({ selectedCategory }) => {
 };
 
 ItemListContainer.propTypes = {
-  selectedCategory: PropTypes.string, // Cambiado a string para representar la categoría seleccionada
+  selectedCategory: PropTypes.string,
 };
 
 export default ItemListContainer;

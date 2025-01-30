@@ -24,7 +24,7 @@ const ItemCard = ({ id, nombre, precio, descripcion, stock, imagenes }) => {
 };
 
 ItemCard.propTypes = {
-  id: PropTypes.string.isRequired, // El ID de Firestore es una cadena
+  id: PropTypes.string.isRequired,
   nombre: PropTypes.string,
   precio: PropTypes.number,
   descripcion: PropTypes.string,
@@ -32,13 +32,4 @@ ItemCard.propTypes = {
   imagenes: PropTypes.arrayOf(PropTypes.string),
 };
 
-/*
-ItemCard.defaultProps = {
-  nombre: "",
-  precio: null,
-  descripcion: "",
-  stock: null,
-  imagenes: [],
-};
-*/
 export default ItemCard;
