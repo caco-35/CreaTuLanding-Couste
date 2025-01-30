@@ -18,18 +18,16 @@ const ItemDetailContainer = () => {
     const fetchProduct = async () => {
       setLoading(true);
       try {
-        // Referencia al documento del producto en Firestore
-        const productRef = doc(db, "products", id);
+        const productRef = doc(db, "products", id); // Referencia al documento del producto
         const productSnap = await getDoc(productRef);
-
+  
         if (productSnap.exists()) {
-          // Si el producto existe, lo guardamos en el estado
           const productData = productSnap.data();
+          // Añadir el ID del producto a los datos obtenidos
+          productData.id = productSnap.id;
           setProduct(productData);
           if (Array.isArray(productData.imgs) && productData.imgs.length > 0) {
-            setSelectedImage(productData.imgs[0]);  // Establece la primera imagen por defecto
-            console.log(setSelectedImage);
-            //console.log(selectedImage);
+            setSelectedImage(productData.imgs[0]);
           }
         } else {
           console.log("No se encontró el producto");
@@ -40,7 +38,7 @@ const ItemDetailContainer = () => {
         setLoading(false);
       }
     };
-
+  
     fetchProduct();
   }, [id]);
 
@@ -73,7 +71,7 @@ const ItemDetailContainer = () => {
     addToCart(product, value);
   };
 
-
+  console.log(product);
 
   return (
     <div className="container-details">
